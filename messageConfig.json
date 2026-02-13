@@ -1,5 +1,0 @@
-{
-    "noPermission": "You lack the authority to issue that command.",
-    "errorGeneric": "message.error.generic (Check the logs!)",
-    "errorNotServer": "That won't work here."
-}
