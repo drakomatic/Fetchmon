@@ -31,6 +31,7 @@ impl EventHandler for Handler {
         if let Interaction::Command(command) = interaction {
             match command.data.name.as_str() {
                 "fetch" => commands::fetch::run(&command, &ctx).await,
+                "sleep" => commands::sleep::run(&command, &ctx).await,
                 _ => discord_generic::make_command_response(&command, &ctx, Some("not implemented".to_string()), None).await,
             };
         }

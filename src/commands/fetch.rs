@@ -21,7 +21,7 @@ fn remove_spaces(stringin: String) -> String {
 }
 
 pub async fn run(command : &CommandInteraction, ctx : &Context){
-    let generic_error = read_language::get_message_string("error_generic".to_string());
+    let generic_error = read_language::get_message_string("msg_error_generic".to_string());
 
     let ascii_image : String;
     let main_body : String;

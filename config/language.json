@@ -1,8 +1,16 @@
 {
-    "msg_no_permission": "You lack the authority to issue that command.",
-    "msg_error_generic": "message.error.generic (Check the logs!)",
-    "msg_error_out_of_server": "That won't work here.",
+    "msg_no_permission": [
+        "You lack the authority to issue that command."
+    ],
+    "msg_error_generic": [
+        "message.error.generic (Check the logs!)"
+    ],
+    "msg_error_out_of_server": [
+        "That won't work here."
+    ],
     "msgset_reply_sleep": [
-        "Fetchmon has spoken. Bedtime!" 
+        "Fetchmon has spoken. Bedtime!",
+        "The moon has risen... it is time to log off.",
+        "You’ve stayed long enough. Let the digital world rest."
     ]
 }
