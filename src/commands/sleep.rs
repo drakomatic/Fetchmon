@@ -8,6 +8,16 @@ use crate::{discord_generic, read_language};
 
 pub async fn run(command: &CommandInteraction, ctx: &Context) {
     if let Some(guild_id) = command.guild_id {
+        let running_member = &command.member.as_ref().unwrap();
+
+        let user_perms = running_member.permissions.unwrap();
+
+        if !user_perms.moderate_members() {
+            let err_message = read_language::get_message_string("msg_no_permission".to_string());
+            discord_generic::make_command_response(command, ctx, Some(err_message), None).await;
+            return;
+        }
+
         let channels = match guild_id.channels(&ctx.http).await {
             Ok(channels) => channels,
             Err(why) => {
