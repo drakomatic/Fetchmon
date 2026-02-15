@@ -32,7 +32,16 @@ impl EventHandler for Handler {
             match command.data.name.as_str() {
                 "fetch" => commands::fetch::run(&command, &ctx).await,
                 "sleep" => commands::sleep::run(&command, &ctx).await,
-                _ => discord_generic::make_command_response(&command, &ctx, Some("not implemented".to_string()), None).await,
+                "serverinfo" => commands::serverinfo::run(&command, &ctx).await,
+                _ => {
+                    discord_generic::make_command_response(
+                        &command,
+                        &ctx,
+                        Some("not implemented".to_string()),
+                        None,
+                    )
+                    .await
+                }
             };
         }
     }
@@ -56,7 +65,11 @@ impl EventHandler for Handler {
         let commands = guild_id
             .set_commands(
                 &ctx.http,
-                vec![commands::fetch::register(), commands::sleep::register()],
+                vec![
+                    commands::fetch::register(),
+                    commands::sleep::register(),
+                    commands::serverinfo::register(),
+                ],
             )
             .await;
 
