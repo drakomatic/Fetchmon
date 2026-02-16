@@ -59,19 +59,21 @@ impl EventHandler for Handler {
             }
         }
 
-        // This is good practice right???
+        let command_list = vec![
+            commands::fetch::register(),
+            commands::sleep::register(),
+            commands::serverinfo::register(),
+        ];
+
         let guild_id = GuildId::new(config.guild_id);
 
-        let commands = guild_id
-            .set_commands(
-                &ctx.http,
-                vec![
-                    commands::fetch::register(),
-                    commands::sleep::register(),
-                    commands::serverinfo::register(),
-                ],
-            )
-            .await;
+        // deploy commands for testing
+        let commands = guild_id.set_commands(&ctx.http, command_list.clone()).await;
+
+        // deploy commands globally
+        if let Err(why) = Command::set_global_commands(&ctx.http, command_list.clone()).await {
+            println!("Can't set global commands: {}", why)
+        };
 
         println!("I now have the following guild slash commands: {commands:#?}");
     }
